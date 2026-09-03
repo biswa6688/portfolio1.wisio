@@ -21,7 +21,8 @@
 
 ### Fixed
 
-- Hero 3D node graph initially rendered centered behind centered text, overlapping and duplicating the name label; reworked to an asymmetric left-text/right-graph composition with an `offsetX` prop on `NodeGraph` and a `showCenterLabel` toggle
+- Hero 3D node graph initially rendered centered behind centered text, overlapping and duplicating the name label; first reworked to an asymmetric left-text/full-bleed-graph composition with an `offsetX` prop on `NodeGraph` and a `showCenterLabel` toggle
+- That offset-based fix only held at the viewport width it was tuned against — at 1920px the graph drifted back over the text (world-space offset covers a smaller fraction of screen at wider FOV). Replaced the full-bleed overlay with a real two-column CSS grid (`hero-grid`) so the graph is confined to its own bounded panel by layout, not by viewport-specific 3D-coordinate tuning; verified at 390/768/1024/1280/1440/1920px
 
 ### Performance
 

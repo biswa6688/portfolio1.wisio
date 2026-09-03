@@ -32,13 +32,20 @@ decision here changes — don't let it drift out of sync with the code.
 
 ## Lessons learned
 
-- **A centered, full-bleed 3D node graph collides with centered hero text.** The first hero
-  implementation rendered the node graph centered behind centered text, producing an unreadable overlap
-  (including a duplicate "Biswaranjan Nayak" label from the 3D scene's center node). Fixed by:
-  left-aligning the hero text into a fixed-width column, adding an `offsetX` prop to `NodeGraph` to
-  shift the whole graph to one side, and adding `showCenterLabel` to suppress the 3D center label when
-  page text already states the name. When adding another 3D scene behind text, default to an
-  asymmetric composition, not centered-behind-centered.
+- **A full-bleed absolutely-positioned 3D node graph behind text does not survive different viewport
+  widths.** Two failed attempts before the fix landed: (1) centered graph behind centered text —
+  produced an unreadable overlap, including a duplicate "Biswaranjan Nayak" label from the 3D scene's
+  center node; (2) left-aligned text + full-bleed canvas with the graph shifted right via a world-space
+  `offsetX` tuned at 1440px — looked fine at that width, but at 1920px the same world-space offset
+  mapped to a smaller fraction of screen width (wider FOV coverage), pulling nodes back over the text.
+  **The actual fix:** stop treating the 3D scene as a full-bleed background overlay. `Hero.tsx` now
+  uses a real two-column CSS grid (`hero-grid`: text column + `.hero-scene-panel`, stacking to one
+  column under 900px) — the graph is confined to its own bounded, non-overlapping panel by layout, not
+  by tuning 3D coordinates against a specific viewport size. `NodeGraph` still has `offsetX` (now 0 for
+  the hero) and `showCenterLabel` (still false — page text already states the name) for other
+  compositions that might need them. **Lesson: don't fight overlap with 3D-space offsets when the 3D
+  scene lives inside a responsive page — give it its own layout box instead.** Verified across
+  390/768/1024/1280/1440/1920px widths after the fix.
 - **Verify the actual working directory before scaffolding.** A prior implementation of this same
   brief already existed at `Downloads\portfolio-wisio` (git history, docs, GitHub Pages CI, remote
   `biswa6688/portfolio.wisio.git`) when this repo was scaffolded fresh at `Desktop\portfolio1`
