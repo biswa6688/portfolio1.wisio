@@ -38,7 +38,7 @@ export function HeroScene() {
 
   return (
     <SceneCanvas
-      cameraPosition={[0, 0.2, 13]}
+      cameraPosition={[0, 0.2, 11.5]}
       ariaLabel={`Interactive 3D visualization: ${profile.name}, connected to ${skillCategories.length} technology categories representing ${profile.experienceYears} years of experience`}
     >
       <NodeGraph
@@ -49,8 +49,8 @@ export function HeroScene() {
         showCenterLabel={false}
         autoRotate={!reducedMotion}
         interactive={!reducedMotion && tier !== 'mobile'}
-        radius={3.7}
-        offsetX={tier === 'mobile' ? 0 : 4.6}
+        radius={3.4}
+        offsetX={0}
       />
     </SceneCanvas>
   );

@@ -4,60 +4,32 @@
   display: flex;
   align-items: center;
   overflow: hidden;
-  isolation: isolate;
 }
 
-.hero-scene-layer {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-}
-
-.hero-scene-layer > div {
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(320px, 560px) 1fr;
+  align-items: center;
+  gap: 40px;
+  padding-block: 56px;
   width: 100%;
-  height: 100%;
-}
-
-.hero-scene-fallback {
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(circle at 50% 40%, var(--color-primary-soft), transparent 60%);
-}
-
-.hero::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background: radial-gradient(ellipse at 50% 100%, var(--color-bg) 0%, transparent 55%);
 }
 
 .hero-content {
-  position: relative;
-  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
   gap: 18px;
-  max-width: 620px;
-  padding-block: 40px;
-  pointer-events: none;
-}
-
-.hero-content > * {
-  pointer-events: auto;
 }
 
 .hero-title {
-  font-size: clamp(36px, 5.5vw, 64px);
+  font-size: clamp(36px, 4.2vw, 60px);
   line-height: 1.05;
 }
 
 .hero-tagline {
-  max-width: 560px;
-  font-size: clamp(16px, 2vw, 19px);
+  font-size: clamp(16px, 1.6vw, 19px);
   color: var(--color-text-muted);
 }
 
@@ -66,7 +38,6 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 8px;
-  max-width: 560px;
 }
 
 .hero-tag {
@@ -85,6 +56,26 @@
   justify-content: flex-start;
   gap: 12px;
   margin-top: 12px;
+}
+
+.hero-scene-panel {
+  position: relative;
+  height: min(560px, 62vh);
+  min-height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: radial-gradient(circle at 60% 40%, var(--color-primary-soft), var(--color-surface) 70%);
+  border: 1px solid var(--color-border);
+}
+
+.hero-scene-panel > div {
+  width: 100%;
+  height: 100%;
+}
+
+.hero-scene-fallback {
+  width: 100%;
+  height: 100%;
 }
 
 .hero-scroll-hint {
@@ -121,14 +112,22 @@
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 900px) {
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+  .hero-scene-panel {
+    height: 340px;
+    min-height: 0;
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
   .hero {
-    min-height: 100svh;
+    min-height: 0;
   }
-  .hero-scene-layer {
-    opacity: 0.2;
-  }
-  .hero-content {
-    max-width: 100%;
+  .hero-scene-panel {
+    height: 280px;
   }
 }
