@@ -1,0 +1,74 @@
+.flow-diagram {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.flow-diagram.vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.flow-diagram.horizontal {
+  flex-direction: row;
+  align-items: center;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.flow-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flow-diagram.horizontal .flow-step {
+  flex-direction: row;
+  flex-shrink: 0;
+}
+
+.flow-step-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+  padding: 10px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface-2);
+  min-width: 140px;
+}
+
+.flow-diagram.compact .flow-step-box {
+  min-width: 110px;
+  padding: 8px 12px;
+}
+
+.flow-step-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.flow-step-sublabel {
+  font-size: 11px;
+  color: var(--color-text-dim);
+  font-family: var(--font-mono);
+}
+
+.flow-arrow {
+  color: var(--color-primary);
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+.flow-diagram.vertical .flow-arrow {
+  height: 20px;
+}
+
+.flow-diagram.horizontal .flow-arrow {
+  width: 20px;
+}

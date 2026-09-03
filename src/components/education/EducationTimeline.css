@@ -1,0 +1,102 @@
+.edu-track {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  scrollbar-width: thin;
+}
+
+.edu-track-line {
+  position: absolute;
+  top: 28px;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: var(--color-border);
+}
+
+.edu-milestone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 168px;
+  flex: 1;
+  padding-top: 0;
+}
+
+.edu-year {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-primary);
+  margin-bottom: 8px;
+}
+
+.edu-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  box-shadow: 0 0 0 4px var(--color-bg), 0 0 0 5px var(--color-border);
+  margin-bottom: 20px;
+  z-index: 1;
+}
+
+.edu-card {
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: center;
+  width: 100%;
+}
+
+.edu-qualification {
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.edu-institution {
+  font-size: 12px;
+  color: var(--color-text-dim);
+}
+
+@media (max-width: 720px) {
+  .edu-track {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  .edu-track-line {
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    right: auto;
+    width: 1.5px;
+    height: auto;
+  }
+  .edu-milestone {
+    flex-direction: row;
+    align-items: center;
+    min-width: 0;
+    width: 100%;
+    gap: 14px;
+  }
+  .edu-year {
+    margin-bottom: 0;
+    order: 3;
+    margin-left: auto;
+  }
+  .edu-dot {
+    margin-bottom: 0;
+  }
+  .edu-card {
+    text-align: left;
+    width: auto;
+    flex: 1;
+  }
+}
